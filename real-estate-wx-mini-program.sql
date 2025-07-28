@@ -11,7 +11,7 @@
  Target Server Version : 80041 (8.0.41)
  File Encoding         : 65001
 
- Date: 27/07/2025 02:18:22
+ Date: 28/07/2025 14:54:49
 */
 
 SET NAMES utf8mb4;
@@ -61,6 +61,7 @@ CREATE TABLE `image`  (
   `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `is_primary` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否主图',
   `sort_order` tinyint UNSIGNED NULL DEFAULT 0 COMMENT '图片排序',
+  `deleted_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`image_id`) USING BTREE,
   INDEX `fk_image_property`(`property_id` ASC) USING BTREE,
   INDEX `idx_primary_image`(`property_id` ASC, `is_primary` ASC) USING BTREE COMMENT '快速查找主图',
@@ -118,6 +119,7 @@ CREATE TABLE `property`  (
   `orientation` enum('north','south','east','west','southeast','northeast','southwest','northwest') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT 'south' COMMENT '默认南向',
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `status` tinyint NOT NULL DEFAULT 1 COMMENT '0审核中 1在售',
+  `deleted_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`property_id`) USING BTREE,
   INDEX `fk_property_community`(`community_id` ASC) USING BTREE,
   INDEX `idx_category`(`category` ASC) USING BTREE,
