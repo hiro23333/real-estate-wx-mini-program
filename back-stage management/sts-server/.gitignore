@@ -1,0 +1,7 @@
+# .gitignore
+
+# 忽略 Node.js 依赖文件夹
+node_modules/
+
+# 忽略包含敏感信息的环境变量文件
+.env
