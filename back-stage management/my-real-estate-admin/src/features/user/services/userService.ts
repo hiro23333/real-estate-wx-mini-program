@@ -24,7 +24,7 @@ const mockUserDetail: UserDetail = {
   user_id: 1,
   nickname: '张三',
   phone: '13800138000',
-  avatar_url: 'https://cdn.example.com/avatar/1.jpg',
+  avatar_url: 'real-estate/1754417659021-o6auo17dd.png',
   created_at: '2023-01-01 10:00:00',
   last_login_time: '2023-10-27 15:30:00',
   messages: [
@@ -83,14 +83,14 @@ export const getUserDetail = async (user_id: number): Promise<ApiResponseSuccess
 };
 
 // 3. 添加用户备注
-export const addUserNote = async (payload: AddUserNotePayload): Promise<ApiResponseSuccess<string>> => {
+export const addUserNote = async (payload: AddUserNotePayload): Promise<ApiResponseSuccess<AddUserNotePayload>> => {
   console.log('Adding note for user:', payload);
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         code: 200,
         message: '备注添加成功',
-        data: 'success',
+        data: payload,
       });
     }, 500);
   });

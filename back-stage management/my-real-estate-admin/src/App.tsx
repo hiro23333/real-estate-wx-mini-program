@@ -18,7 +18,6 @@ import MainLayout from './layout/MainLayout';
 import PropertyListPage from './features/property/pages/PropertyListPage';
 import PropertyFormPage from './features/property/pages/PropertyFormPage';
 import UserListPage from './features/user/pages/UserListPage';
-import UserDetailPage from './features/user/pages/UserDetailPage';
 import MessageListPage from './features/message/pages/MessageListPage';
 import DataDictionaryPage from './features/data-dictionary/pages/DataDictionaryPage';
 import BannerManagementPage from './features/banner/pages/BannerManagementPage';
@@ -54,7 +53,6 @@ const App: React.FC = () => {
               <Route path="properties/edit/:propertyId" element={<PropertyFormPage />} />
 
               <Route path="users" element={<UserListPage />} />
-              <Route path="users/detail/:userId" element={<UserDetailPage />} />
 
               <Route path="messages" element={<MessageListPage />} />
 

@@ -25,8 +25,8 @@ export interface MessageDetail {
   replied_content: string | null; // 回复内容，null 表示未回复
   replied_time: string | null; // 回复时间，null 表示未回复
   // 假设后端在详情接口中也返回了房源标题和发送者昵称，如果没有则需要调整
-  property_title?: string;
-  sender_nickname?: string;
+  property_title: string;
+  sender_nickname: string;
 }
 
 // 回复消息请求参数

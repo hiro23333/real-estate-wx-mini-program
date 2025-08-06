@@ -77,6 +77,8 @@ export const getMessageDetail = (message_id: number): Promise<ApiResponseSuccess
         responder_id: message_id === 2 || message_id === 5 ? 1 : null,
         replied_content: message_id === 2 || message_id === 5 ? `这是一条回复内容，针对ID为 ${message_id} 的消息。` : null,
         replied_time: message_id === 2 || message_id === 5 ? '2025-07-28 15:00:00' : null,
+        property_title: "嘉园101",
+        sender_nickname: "神秘用户001",
       };
       resolve({ code: 200, message: 'success', data: mockDetail });
     }, 500);

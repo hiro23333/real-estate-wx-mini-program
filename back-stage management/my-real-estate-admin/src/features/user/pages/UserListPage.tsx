@@ -1,4 +1,5 @@
 // src/features/user/pages/UserListPage.tsx
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Card, Table, Input, Space, Button, message, Modal, Form } from 'antd';
@@ -8,6 +9,9 @@ import type { UserListItem, UserDetail, AddUserNotePayload } from '../types';
 import type { TableColumnsType, TablePaginationConfig } from 'antd';
 import { useAuth } from '../../../hooks/useAuth';
 import type { FormInstance } from 'antd/lib/form';
+
+// 导入 getOssSignedUrl
+import { getOssSignedUrl } from '../../../services/ossService';
 
 const { TextArea } = Input;
 
@@ -276,42 +280,70 @@ const UserListPage: React.FC = () => {
 export default UserListPage;
 
 // 详情展示组件
-const UserDetailModal: React.FC<{ userDetail: UserDetail }> = ({ userDetail }) => (
-  <div style={{ maxHeight: '70vh', overflowY: 'auto' }}>
-    <h3>基本信息</h3>
-    <p><strong>用户ID:</strong> {userDetail.user_id}</p>
-    <p><strong>昵称:</strong> {userDetail.nickname}</p>
-    <p><strong>电话:</strong> {userDetail.phone}</p>
-    <p><strong>头像:</strong> <img src={userDetail.avatar_url} alt="头像" style={{ width: 60, height: 60, borderRadius: '50%' }} /></p>
-    <p><strong>创建时间:</strong> {userDetail.created_at}</p>
-    <p><strong>最后一次登录时间:</strong> {userDetail.last_login_time}</p>
+const UserDetailModal: React.FC<{ userDetail: UserDetail }> = ({ userDetail }) => {
+  // 关键修改: 使用状态来存储签名后的 URL
+  const [signedAvatarUrl, setSignedAvatarUrl] = useState<string | null>(null);
 
-    <h3 style={{ marginTop: 24 }}>留言列表</h3>
-    <Table
-      dataSource={userDetail.messages.map((item, index) => ({ ...item, key: item.message_id, index: index + 1 }))}
-      columns={[
-        { title: '序号', dataIndex: 'index', key: 'index', width: 80 },
-        { title: '留言ID', dataIndex: 'message_id', key: 'message_id' },
-        { title: '留言内容', dataIndex: 'message_content', key: 'message_content' },
-        { title: '回复内容', dataIndex: 'replied_content', key: 'replied_content' },
-      ]}
-      pagination={false}
-      rowKey="message_id"
-    />
+  useEffect(() => {
+    // 当 userDetail 变化时，异步获取签名 URL
+    const fetchSignedUrl = async () => {
+      if (userDetail && userDetail.avatar_url) {
+        try {
+          const url = await getOssSignedUrl(userDetail.avatar_url);
+          setSignedAvatarUrl(url);
+        } catch (error) {
+          console.error('Failed to get signed URL for avatar:', error);
+          setSignedAvatarUrl(null); // 获取失败则清空URL
+        }
+      }
+    };
+    fetchSignedUrl();
+  }, [userDetail]);
 
-    <h3 style={{ marginTop: 24 }}>备注列表</h3>
-    <Table
-      dataSource={userDetail.remarks.map((item, index) => ({ ...item, key: index, index: index + 1 }))}
-      columns={[
-        { title: '序号', dataIndex: 'index', key: 'index', width: 80 },
-        { title: '备注内容', dataIndex: 'content', key: 'content' },
-        { title: '备注者昵称', dataIndex: 'admin_username', key: 'admin_username' },
-      ]}
-      pagination={false}
-      rowKey={(record) => record.remark_index.toString()}
-    />
-  </div>
-);
+  return (
+    <div style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+      <h3>基本信息</h3>
+      <p><strong>用户ID:</strong> {userDetail.user_id}</p>
+      <p><strong>昵称:</strong> {userDetail.nickname}</p>
+      <p><strong>电话:</strong> {userDetail.phone}</p>
+      <p>
+        <strong>头像:</strong>
+        {signedAvatarUrl ? (
+          <img src={signedAvatarUrl} alt="头像" style={{ width: 60, height: 60, borderRadius: '50%' }} />
+        ) : (
+          <span>加载中...</span>
+        )}
+      </p>
+      <p><strong>创建时间:</strong> {userDetail.created_at}</p>
+      <p><strong>最后一次登录时间:</strong> {userDetail.last_login_time}</p>
+
+      <h3 style={{ marginTop: 24 }}>留言列表</h3>
+      <Table
+        dataSource={userDetail.messages.map((item, index) => ({ ...item, key: item.message_id, index: index + 1 }))}
+        columns={[
+          { title: '序号', dataIndex: 'index', key: 'index', width: 80 },
+          { title: '留言ID', dataIndex: 'message_id', key: 'message_id' },
+          { title: '留言内容', dataIndex: 'message_content', key: 'message_content' },
+          { title: '回复内容', dataIndex: 'replied_content', key: 'replied_content' },
+        ]}
+        pagination={false}
+        rowKey="message_id"
+      />
+
+      <h3 style={{ marginTop: 24 }}>备注列表</h3>
+      <Table
+        dataSource={userDetail.remarks.map((item, index) => ({ ...item, key: index, index: index + 1 }))}
+        columns={[
+          { title: '序号', dataIndex: 'index', key: 'index', width: 80 },
+          { title: '备注内容', dataIndex: 'content', key: 'content' },
+          { title: '备注者昵称', dataIndex: 'admin_username', key: 'admin_username' },
+        ]}
+        pagination={false}
+        rowKey={(record) => record.remark_index.toString()}
+      />
+    </div>
+  );
+};
 
 // 备注组件
 const UserNoteModal: React.FC<{ form: FormInstance<NoteFormValues>, onFinish: (values: NoteFormValues) => void }> = ({ form, onFinish }) => (

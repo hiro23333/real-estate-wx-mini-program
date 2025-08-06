@@ -50,7 +50,7 @@ export interface PropertyDetail {
   title: string;
   category: PropertyCategory;
   price: number;
-  address: string; // 新增地址字段
+  address: string; 
   house_type?: string;
   area: number;
   floor?: string;
