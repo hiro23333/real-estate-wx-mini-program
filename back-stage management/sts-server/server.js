@@ -969,7 +969,7 @@ app.post('/api/property/submitByUser',
         return res.status(400).json({ code: 400, message: '缺少房源图片' });
       }
 
-      console.log(req.body);
+      // console.log(req.body);
       
 
       // 保存到数据库
