@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "property-card": "../../components/property-card/property-card"
+  },
+  "navigationBarTitleText": "我的收藏"
+}

@@ -1,0 +1,25 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .login-logo {
+    width: 200rpx;
+    height: 200rpx;
+    margin-bottom: 80rpx;
+  }
+  
+  .login-logo image {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .login-btn {
+    width: 300rpx;
+    height: 300rpx;
+    border-radius: 100%;
+    background-color: darkkhaki;
+  }

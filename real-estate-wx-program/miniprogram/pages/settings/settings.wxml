@@ -1,0 +1,39 @@
+<view class="settings-container">
+    <!-- <view class="header">
+    <text class="title">我的信息</text>
+  </view> -->
+
+    <!-- 信息表单 -->
+    <view class="form-container">
+        <!-- 头像 -->
+        <view class="form-item">
+            <text class="label">头像</text>
+            <view class="avatar-wrapper">
+                <!-- 使用 button 包裹 image，保持功能完整 -->
+                <button open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" class="avatar-button">
+                    <image src="{{userInfo.avatarUrl || '/assets/default/default-avatar.png'}}" mode="aspectFill" class="avatar-image" />
+                </button>
+                <van-icon name="arrow" size="16px" />
+            </view>
+        </view>
+
+        <!-- 昵称 -->
+        <view class="form-item">
+            <text class="label">昵称</text>
+            <input type="nickname" value="{{userInfo.nickname}}" placeholder="请输入昵称" bindinput="onNicknameChange" class="input-field" bindblur="saveChanges"/>
+            <van-icon name="arrow" size="16px" />
+        </view>
+
+        <!-- 手机号 -->
+        <view class="form-item">
+            <text class="label">手机</text>
+            <input type="number" value="{{userInfo.phone}}" placeholder="请输入手机号" bindinput="onPhoneChange" class="input-field" disabled="{{!canEditPhone}}" />
+            <van-icon wx:if="{{canEditPhone}}" name="arrow" size="16px" />
+        </view>
+    </view>
+
+    <!-- 退出登录按钮 -->
+    <view class="logout-btn" bindtap="logout">
+        <text>退出登录</text>
+    </view>
+</view>

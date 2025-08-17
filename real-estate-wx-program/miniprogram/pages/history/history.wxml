@@ -1,0 +1,12 @@
+<view class="container">
+    
+    <view style="width: 90%;" wx:if="{{properties.length > 0}}">
+        <scroll-view class="property-list-container" scroll-y  style="height: 100vh;">
+            <property-card wx:for="{{properties}}" wx:key="property_id" item="{{item}}" bind:tap="onPropertyTap"/>
+            <view wx:if="{{finished && properties.length > 0}}" class="loading-tips">
+                <text>没有更多了</text>
+            </view>
+        </scroll-view>
+    </view>
+    <van-empty wx:else description="暂无历史记录" />
+</view>

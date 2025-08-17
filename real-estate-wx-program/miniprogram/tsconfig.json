@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+      "strict": true,
+      "strictNullChecks": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "noImplicitReturns": true,
+      "strictPropertyInitialization": false,
+      "alwaysStrict": true,
+      "noFallthroughCasesInSwitch": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "experimentalDecorators": true,
+      "allowJs": true,
+  
+      "module": "CommonJS",
+      "target": "ES2020",
+      "lib": ["ES2020"],
+  
+      "baseUrl": "./", // 基准目录现在是 miniprogram
+      "paths": {
+        // 这里的路径也需要修改，因为 miniprogram_npm 现在就在当前目录
+        "@vant/weapp/*": ["./miniprogram_npm/@vant/weapp/*"],
+        "~/*": ["./*"]
+      }
+    },
+    "include": [
+      "./**/*.ts" // 从 miniprogram 目录开始，包含所有子目录下的 .ts 文件
+    ],
+    "exclude": [
+      "node_modules",
+      "miniprogram_npm/**/*" // 这里的路径也需要修改
+    ]
+  }

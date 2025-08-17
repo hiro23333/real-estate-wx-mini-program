@@ -1,0 +1,79 @@
+/* 容器样式 */
+.custom-cell {
+    padding: 16rpx;
+    position: relative;
+  }
+  
+  /* 标题栏布局 */
+  .cell-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8rpx;
+  }
+  
+  .title {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* 状态标签 */
+  .status {
+    margin-left: 10rpx;
+    font-size: 30rpx;
+    padding: 2rpx 6rpx;
+    border-radius: 4rpx;
+  }
+  .status.replied {
+    background: #e8f5e9;
+    color: #07c160;
+  }
+  .status.unreplied {
+    background: #ffebee;
+    color: #ff4444;
+  }
+  
+  /* 内容区域（关键样式） */
+  .full-width-label {
+    width: 100%; /* 强制占满宽度 */
+    margin-top: 25rpx;
+    font-size: 28rpx;
+    color: #666;
+    line-height: 1.6;
+    white-space: pre-line; /* 支持\n换行 */
+  }
+  
+  /* 回复内容样式 */
+  .reply-content {
+    display: block;
+    margin-top: 6rpx;
+    padding-left: 12rpx;
+    border-left: 2rpx solid #07c160;
+    color: #999;
+  }
+  
+  /* 分隔线 */
+  .cell-border {
+    position: absolute;
+    left: 16rpx;
+    right: 16rpx;
+    bottom: 0;
+    height: 1rpx;
+    background: #f0f0f0;
+  }
+  
+  /* 空状态提示 */
+  .empty-tip {
+    text-align: center;
+    padding: 40rpx;
+    color: #999;
+  }
+
+  .refresh-tip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #969799;
+  }

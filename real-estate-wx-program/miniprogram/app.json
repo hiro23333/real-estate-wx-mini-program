@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/consultation/consultation",
+    "pages/my/my",
+    "pages/login/login",
+    "pages/property-detail/property-detail",
+    "pages/landlord-form/landlord-form",
+    "pages/settings/settings",
+    "pages/property-list/property-list",
+    "pages/myFavorite/myFavorite",
+    "pages/history/history"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "房产小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#1296db",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/home.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/consultation/consultation",
+        "iconPath": "assets/icons/cc-message.png",
+        "selectedIconPath": "assets/icons/cc-message.png",
+        "text": "咨询"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "assets/icons/customer.png",
+        "selectedIconPath": "assets/icons/customer.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "miniprogram_npm/@vant/weapp/button/index",
+    "van-card": "miniprogram_npm/@vant/weapp/card/index",
+    "van-tabbar": "miniprogram_npm/@vant/weapp/tabbar/index",
+    "van-tabbar-item": "miniprogram_npm/@vant/weapp/tabbar-item/index",
+    "van-grid": "miniprogram_npm/@vant/weapp/grid/index",
+    "van-grid-item": "miniprogram_npm/@vant/weapp/grid-item/index",
+    "van-search": "miniprogram_npm/@vant/weapp/search/index",
+    "van-toast": "miniprogram_npm/@vant/weapp/toast/index",
+    "van-popup": "miniprogram_npm/@vant/weapp/popup/index",
+    "van-radio": "miniprogram_npm/@vant/weapp/radio/index",
+    "van-radio-group": "miniprogram_npm/@vant/weapp/radio-group/index",
+    "van-dialog": "miniprogram_npm/@vant/weapp/dialog/index",
+    "van-field": "miniprogram_npm/@vant/weapp/field/index",
+    "van-tabs": "miniprogram_npm/@vant/weapp/tabs/index",
+    "van-tab": "miniprogram_npm/@vant/weapp/tab/index",
+    "van-cell": "miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-empty": "miniprogram_npm/@vant/weapp/empty/index",
+    "van-icon": "miniprogram_npm/@vant/weapp/icon/index",
+    "van-tag": "miniprogram_npm/@vant/weapp/tag/index",
+    "van-loading": "miniprogram_npm/@vant/weapp/loading/index",
+    "van-picker": "miniprogram_npm/@vant/weapp/picker/index",
+    "van-uploader": "miniprogram_npm/@vant/weapp/uploader/index"
+  }
+}

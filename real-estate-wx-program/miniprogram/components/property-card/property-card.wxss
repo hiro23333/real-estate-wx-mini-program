@@ -1,0 +1,70 @@
+/* components/property-card.wxss */
+.property-card {
+    margin: 10rpx;
+    border-radius: 8rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .community {
+    font-size: 16rpx;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .title {
+    font-size: 36rpx;
+    font-weight: bold;
+    margin-top: 4rpx;
+    margin-left: 8rpx;
+  }
+  
+  .card-desc {
+    display: flex;
+    align-items: center;
+    margin-top: 8rpx;
+  }
+  
+  .card-desc-text {
+    font-size: 26rpx;
+    color: #999;
+    margin-left: 8rpx;
+  }
+  
+  .card-price {
+    display: flex;
+    align-items: center;
+    margin-top: 3rpx;
+    margin-left: 8rpx;
+  }
+  
+  .price {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #07c160;
+  }
+  
+  .price-tag {
+    font-size: 12rpx;
+    color: #07c160;
+    margin-left: 8rpx;
+    padding: 2rpx 6rpx;
+    background-color: rgba(7, 193, 96, 0.1);
+    border-radius: 4rpx;
+  }
+  
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8rpx;
+    margin-left: 8rpx;
+  }
+  
+  .card-tags .custom-tag {
+    margin-right: 6rpx;
+    margin-bottom: 6rpx;
+  }

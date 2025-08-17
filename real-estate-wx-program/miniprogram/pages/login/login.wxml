@@ -1,0 +1,12 @@
+<view class="login-container">
+  <button 
+    type="primary" 
+    class="login-btn"
+    open-type="getPhoneNumber"
+    bindgetphonenumber="handleLogin"
+  >
+    <text style="font-size: 60rpx;">一键登录</text>
+  </button>
+  
+  <van-toast id="van-toast" />
+</view>

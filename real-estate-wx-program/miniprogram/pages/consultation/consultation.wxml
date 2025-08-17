@@ -1,0 +1,19 @@
+<van-loading wx:if="{{loading}}"/> 
+
+<view class="message-list">
+    <view class="custom-cell" wx:for="{{messages}}" wx:key="message_id" bind:tap="onCellTap" data-index="{{index}}">
+        <view class="cell-header">
+            <text class="title">{{item.property_title || '未命名房产'}}</text>
+            <text class="status {{item.is_replied ? 'replied' : 'unreplied'}}">{{item.is_replied ? '已回复' : '未回复'}}
+            </text>
+        </view>
+
+        <view class="full-width-label">咨询内容：{{item.content}}
+            <block wx:if="{{item.is_replied}}">
+                <text class="reply-content">{{item.replied_content}}</text>
+            </block>
+        </view>
+        <view class="cell-border"></view>
+    </view>
+    <view wx:if="{{messages.length === 0}}" class="empty-tip">暂无消息</view>
+</view>

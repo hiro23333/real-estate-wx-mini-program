@@ -1,0 +1,80 @@
+.settings-container {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding: 20rpx;
+  }
+  
+  .header {
+    margin-bottom: 30rpx;
+  }
+  
+  .title {
+    font-size: 20rpx;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-container {
+    background-color: #fff;
+    border-radius: 12rpx;
+    overflow: hidden;
+  }
+  
+  .form-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30rpx;
+    border-bottom: 1rpx solid #eee;
+  }
+  
+  .label {
+    font-size: 30rpx;
+    color: #333;
+    width: 80rpx;
+  }
+  
+  .avatar-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* 消除按钮默认样式 */
+.avatar-button {
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    line-height: 1;
+  }
+  
+  /* 图片样式 */
+  .avatar-image {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    display: block;
+  }
+  
+  /* 点击反馈 */
+  .avatar-button:active {
+    opacity: 0.8;
+  }
+  
+  .input-field {
+    flex: 1;
+    text-align: right;
+    font-size: 28rpx;
+    color: #666;
+    padding-right: 10rpx;
+  }
+  
+  .logout-btn {
+    margin-top: 30rpx;
+    background-color: #ff9500;
+    color: white;
+    text-align: center;
+    padding: 15rpx;
+    border-radius: 8rpx;
+    font-size: 30rpx;
+  }

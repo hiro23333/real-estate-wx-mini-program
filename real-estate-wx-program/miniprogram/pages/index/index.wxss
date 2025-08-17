@@ -1,0 +1,125 @@
+/**index.wxss**/
+page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollarea {
+    flex: 1;
+    overflow-y: hidden;
+}
+
+.userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #aaa;
+    width: 80%;
+}
+
+.userinfo-avatar {
+    overflow: hidden;
+    width: 128rpx;
+    height: 128rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+}
+
+.usermotto {
+    margin-top: 200px;
+}
+
+.avatar-wrapper {
+    padding: 0;
+    width: 56px !important;
+    border-radius: 8px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.avatar {
+    display: block;
+    width: 56px;
+    height: 56px;
+}
+
+.nickname-wrapper {
+    display: flex;
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    border-top: .5px solid rgba(0, 0, 0, 0.1);
+    border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+    color: black;
+}
+
+.nickname-label {
+    width: 105px;
+}
+
+.nickname-input {
+    flex: 1;
+}
+
+.banner-wrapper {
+    height: 300rpx;
+    width: 100%;
+}
+
+swiper {
+    height: 300rpx;
+    width: 100%;
+    
+}
+
+swiper-item image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+.property-list-container {
+    /* 必须设置高度，否则无法滚动 */
+    height: 100vh;
+    /* 示例：100%视口高度，根据你的布局调整 */
+}
+
+
+
+.loading-tips {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx;
+    color: #999;
+    font-size: 28rpx;
+}
+
+
+/* 修改图片和文字的样式 */
+.action-icon {
+    width: 60rpx;
+    /* 调整图标宽度，例如从 80rpx 减小到 60rpx */
+    height: 60rpx;
+    /* 调整图标高度，例如从 80rpx 减小到 60rpx */
+}
+
+.action-text {
+    font-size: 50rpx;
+    /* 调整文字字号，例如从 28rpx 减小到 24rpx */
+    margin-top: 10rpx;
+    /* 调整图标与文字的间距 */
+}
+
+.tags-container {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 8px; /* 使用 gap 属性简化间距设置 */
+}
+
+.search-filter-bar{
+    width: 80%;
+}

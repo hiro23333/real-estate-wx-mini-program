@@ -1,0 +1,91 @@
+<view class="form-container">
+    <!-- 基础信息 -->
+    <van-cell-group title="基本信息">
+        <van-field label="房源标题" placeholder="请输入标题" value="{{formData.title}}" bind:change="onFieldChange" data-field="title" required />
+
+        <van-cell title="交易类型" value="{{displayValues.categoryName}}" is-link bind:click="onShowCategoryPicker" />
+    </van-cell-group>
+
+    <!-- 位置信息 -->
+    <van-cell-group title="位置信息">
+        <van-cell title="所属小区" value="{{displayValues.communityName}}" is-link bind:click="onShowCommunityPicker" required />
+
+        <van-field label="详细地址" placeholder="请输入楼栋号、单元号" value="{{formData.address}}" bind:change="onFieldChange" data-field="address" required />
+    </van-cell-group>
+
+    <!-- 房屋信息 -->
+    <van-cell-group title="房屋信息">
+        <van-field label="建筑面积" placeholder="请输入面积" type="digit" value="{{formData.area}}" bind:change="onFieldChange" data-field="area" required>
+            <view slot="right-icon">㎡</view>
+        </van-field>
+
+        <van-field label="户型" placeholder="如：3室2厅1卫" value="{{formData.house_type}}" bind:change="onFieldChange" data-field="house_type" required />
+
+        <van-field label="所在楼层" placeholder="如：5/18层" value="{{formData.floor}}" bind:change="onFieldChange" data-field="floor" />
+
+        <van-cell title="房屋朝向" value="{{displayValues.orientationName}}" is-link bind:click="onShowOrientationPicker" />
+
+        <van-field label="{{displayValues.priceLabel}}" placeholder="请输入价格" type="digit" value="{{formData.price}}" bind:change="onFieldChange" data-field="price" required>
+            <view slot="right-icon">元</view>
+        </van-field>
+    </van-cell-group>
+
+    <!-- 标签选择 -->
+    <van-cell-group title="房源标签">
+        <van-cell title="选择标签" value="{{displayValues.tagNames.length ? '已选' + displayValues.tagNames.length + '个' : '请选择'}}" is-link bind:click="onShowTagPicker" />
+        <view class="tag-container">
+            <van-tag wx:for="{{displayValues.tagNames}}" wx:key="*this" type="primary">
+                {{item}}
+            </van-tag>
+        </view>
+    </van-cell-group>
+
+    <!-- 图片上传 -->
+    <van-cell-group title="房源图片">
+        <van-uploader file-list="{{fileList}}" max-count="9" deletable bind:after-read="onAfterRead" bind:delete="onDeleteImage">
+            <view slot="icon" class="upload-icon">
+                <van-icon name="photograph" size="48rpx" />
+            </view>
+        </van-uploader>
+
+        <!-- <view class="image-list">
+            <view wx:for="{{submitImages}}" wx:key="oss_path" class="image-item {{item.is_primary ? 'primary' : ''}}">
+                <image src="{{item.url}}" mode="aspectFill" />
+                <view class="image-actions">
+                    <van-icon name="{{item.is_primary ? 'star' : 'star-o'}}" color="{{item.is_primary ? '#ffd21e' : '#fff'}}" bind:click="onSetPrimaryImage" data-index="{{index}}" />
+                    <van-icon name="delete" color="#fff" bind:click="onDeleteImage" data-index="{{index}}" />
+                </view>
+                <view wx:if="{{item.is_primary}}" class="primary-badge">主图</view>
+            </view>
+        </view> -->
+        <view class="upload-tip">第一张将作为主图（最多9张）</view>
+    </van-cell-group>
+
+    <!-- 房源描述 -->
+    <van-cell-group title="房源描述">
+        <van-field label="详细描述" type="textarea" placeholder="请输入房源亮点、周边配套等信息" autosize value="{{formData.description}}" bind:change="onFieldChange" data-field="description" />
+    </van-cell-group>
+
+    <!-- 提交按钮 -->
+    <van-button type="primary" block bind:click="onSubmit" loading="{{isSubmitting}}" style="margin: 20px 0;">
+        提交审核
+    </van-button>
+
+    <!-- 选择器 -->
+    <van-popup show="{{showCommunityPicker}}" position="bottom">
+        <van-picker show-toolbar columns="{{communityNames}}" bind:confirm="onSelectCommunity" bind:cancel="onCancelCommunityPicker" />
+    </van-popup>
+
+    <van-popup show="{{showTagPicker}}" position="bottom">
+        <van-picker show-toolbar columns="{{tagNames}}" bind:confirm="onTagConfirm" bind:cancel="onCancelTagPicker" />
+    </van-popup>
+
+    <van-popup show="{{showOrientationPicker}}" position="bottom">
+        <van-picker show-toolbar columns="{{orientationNames}}" bind:confirm="onOrientationConfirm" bind:cancel="onCancelOrientationPicker" />
+    </van-popup>
+
+    <van-popup show="{{showCategoryPicker}}" position="bottom">
+        <van-picker show-toolbar columns="{{categoryNames}}" bind:confirm="onCategoryConfirm" bind:cancel="onCancelCategoryPicker" />
+    </van-popup>
+    <van-toast id="van-toast" />
+</view>

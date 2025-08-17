@@ -1,0 +1,28 @@
+<van-card
+  class="property-card"
+  thumb="{{item.signedUrl ||'/assets/icons/image-error.png' }}"
+  bind:tap="onCardTap"
+>
+  <view slot="title" class="card-title">
+    <text class="title">{{item.title}}</text>
+  </view>
+  
+  <view slot="desc" class="card-desc">
+    <text class="card-desc-text">{{item.category}} | {{item.area}}m²</text>
+  </view>
+  
+  <view slot="price" class="card-price">
+    <text class="price">{{item.price}}元/月</text>
+  </view>
+  
+  <view slot="tags" class="card-tags">
+    <van-tag 
+      wx:for="{{item.tags}}" 
+      wx:key="tag_id"
+      plain 
+      size="small"
+      type="primary"
+      class="custom-tag"
+    >{{item.name}}</van-tag>
+  </view>
+</van-card>

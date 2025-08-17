@@ -1,0 +1,31 @@
+/* 表单容器 */
+.form-container {
+    padding: 20rpx;
+  }
+  
+  /* 上传区域 */
+  .upload-section {
+    margin: 30rpx 0;
+    padding: 0 20rpx;
+  }
+  
+  .upload-tip {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 10rpx;
+  }
+  
+  /* 调整Vant组件样式 */
+  van-uploader {
+    --uploader-upload-size: 160rpx !important;
+  }
+  
+  van-field {
+    --field-label-width: 120rpx;
+  }
+  
+  van-button {
+    margin-top: 40rpx;
+  }
+
+  

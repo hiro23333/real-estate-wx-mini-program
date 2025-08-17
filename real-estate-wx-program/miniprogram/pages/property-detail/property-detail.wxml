@@ -1,0 +1,61 @@
+<view class="container">
+    <view class="swiper-wrapper">
+        <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+            <swiper-item wx:for="{{propertyDetail.images}}" wx:key="sort_order">
+                <image src="{{item.url}}" mode="aspectFill" class="swiper-image" />
+            </swiper-item>
+        </swiper>
+    </view>
+
+    <view class="info-section">
+        <view class="title-wrapper">
+            <view class="title">{{propertyDetail.title}}</view>
+            <van-icon name="like-o" size="48rpx" class="favorite-icon {{propertyDetail.is_favorite ? 'favorited' : ''}}" bindtap="onToggleFavorite" />
+        </view>
+        <view class="address">{{propertyDetail.address}}</view>
+        <view class="price">{{propertyDetail.price}}元/月</view>
+    </view>
+
+    <view class="tags-section">
+        <van-tag wx:for="{{propertyDetail.tags}}" wx:key="tag_id" plain type="primary" class="tag-item">
+            {{item.name}}
+        </van-tag>
+    </view>
+
+    <view class="basic-info-list">
+        <view class="basic-info-item">
+            <text class="label">户型</text>
+            <text class="value">{{propertyDetail.house_type}}</text>
+        </view>
+        <view class="basic-info-item">
+            <text class="label">面积</text>
+            <text class="value">{{propertyDetail.area}}m²</text>
+        </view>
+        <view class="basic-info-item">
+            <text class="label">楼层</text>
+            <text class="value">{{propertyDetail.floor}}</text>
+        </view>
+        <view class="basic-info-item">
+            <text class="label">朝向</text>
+            <text class="value">{{propertyDetail.orientation}}</text>
+        </view>
+    </view>
+
+    <view class="description-section">
+        <view class="section-title">房屋详情</view>
+        <view class="description-content">{{propertyDetail.description}}</view>
+    </view>
+
+    <view class="bottom-bar">
+        <button class="share-button" open-type="share">分享</button>
+        <view class="chat-button" bindtap="onChatTap">聊一下</view>
+    </view>
+</view>
+
+<van-dialog use-slot title="房源咨询" show="{{ showChatModal }}" show-cancel-button bind:close="onCloseChatModal" bind:confirm="onSubmitMessage">
+    <view class="dialog-content">
+        <van-field value="{{ messageContent }}" type="textarea" placeholder="请输入您的咨询内容" autosize border="{{ false }}" bind:change="onMessageContentChange" />
+    </view>
+</van-dialog>
+
+<van-toast id="van-toast" />

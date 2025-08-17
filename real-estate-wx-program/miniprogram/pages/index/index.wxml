@@ -1,0 +1,129 @@
+<view class="container">
+    <view class="banner-wrapper">
+        <swiper autoplay interval="3000" indicator-dots indicator-color="rgba(0,0,0,0.3)" indicator-active-color="#1296db">
+            <block wx:for="{{banners}}" wx:key="banner_id">
+                <swiper-item>
+                    <image src="{{item.signedUrl}}" mode="aspectFill" binderror="handleImageError" bind:tap="onBannerTap" data-id="{{item.property_id}}" />
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+
+    <view class="quick-actions">
+        <van-grid column-num="2" border="{{false}}">
+            <van-grid-item use-slot bindtap="onCategorySelect" data-category="sale">
+                <image src="/assets/icons/buy.png" class="action-icon"></image>
+                <text class="action-text">买房</text>
+            </van-grid-item>
+            <van-grid-item use-slot bindtap="onCategorySelect" data-category="rent">
+                <image src="/assets/icons/rent.png" class="action-icon"></image>
+                <text class="action-text">租房</text>
+            </van-grid-item>
+            <van-grid-item use-slot bindtap="onCategorySelect" data-category="commercial">
+                <image src="/assets/icons/commercial.png" class="action-icon"></image>
+                <text class="action-text">商铺写字楼</text>
+            </van-grid-item>
+            <van-grid-item use-slot bindtap="onLandlordTap">
+                <image src="/assets/icons/landlord.png" class="action-icon"></image>
+                <text class="action-text">我是房东</text>
+            </van-grid-item>
+        </van-grid>
+    </view>
+
+    <view class="search-filter-bar">
+        <van-search value="{{ searchKeyword }}" placeholder="搜索房源标题" use-action-slot bind:change="onSearchChange" bind:search="onSearch">
+            <view slot="action" bind:tap="onFilterTap">筛选</view>
+        </van-search>
+    </view>
+
+    <view style="width: 90%;" wx:if="{{properties.length > 0}}">
+        <scroll-view class="property-list-container" scroll-y bindscrolltolower="onLoadMore" style="height: 100vh;">
+            <property-card wx:for="{{properties}}" wx:key="property_id" item="{{item}}" bind:tap="onPropertyTap"/>
+            <view wx:if="{{loading}}" class="loading-tips">
+                <van-loading type="spinner" size="20px" />
+                <text>加载中...</text>
+            </view>
+            <view wx:if="{{finished && properties.length > 0}}" class="loading-tips">
+                <text>没有更多了</text>
+            </view>
+        </scroll-view>
+    </view>
+    <van-empty wx:else description="暂无房源数据" />
+
+    <van-popup show="{{ showFilterPopup }}" position="right" custom-style="height: 100%; width: 80%;" bind:close="onCloseFilterPopup">
+        <view class="filter-popup-content">
+            <text class="filter-title">筛选条件</text>
+            <view class="filter-section">
+                <van-cell-group title="房源类型">
+                    <van-radio-group value="{{ selectedCategory }}" bind:change="onFilterCategoryChange">
+                        <van-cell title="全部" clickable data-name="" data-category="" bindtap="onFilterCategoryTap">
+                            <van-radio name="" />
+                        </van-cell>
+                        <van-cell title="买房" clickable data-name="sale" data-category="sale" bindtap="onFilterCategoryTap">
+                            <van-radio name="sale" />
+                        </van-cell>
+                        <van-cell title="租房" clickable data-name="rent" data-category="rent" bindtap="onFilterCategoryTap">
+                            <van-radio name="rent" />
+                        </van-cell>
+                        <van-cell title="商铺写字楼" clickable data-name="commercial" data-category="commercial" bindtap="onFilterCategoryTap">
+                            <van-radio name="commercial" />
+                        </van-cell>
+                    </van-radio-group>
+                </van-cell-group>
+            </view>
+
+            <view class="filter-section">
+                <van-cell-group title="小区">
+                    <view class="tags-container">
+                        <van-tag wx:for="{{communities}}" wx:key="community_id" data-id="{{item.community_id}}" bindtap="onCommunityTap" class="filter-tag" plain="{{item.community_id !== selectedCommunityId}}" type="{{item.community_id === selectedCommunityId ? 'primary' : 'default'}}">
+                            {{item.name}}
+                        </van-tag>
+                    </view>
+                </van-cell-group>
+            </view>
+
+            <view class="filter-section">
+                <van-cell-group title="标签">
+                    <view class="tags-container">
+                        <van-tag wx:for="{{tags}}" wx:key="tag_id" data-id="{{item.tag_id}}" bindtap="onTagTap" class="filter-tag" plain="{{tagStatusMap[item.tag_id] === undefined}}" type="{{tagStatusMap[item.tag_id] !== undefined ? 'primary' : 'default'}}">
+                            {{item.name}}
+                        </van-tag>
+                    </view>
+                </van-cell-group>
+            </view>
+
+
+            <view class="filter-section">
+                <van-cell-group title="排序">
+                    <van-radio-group value="{{ sortOrder }}" bind:change="onSortOrderChange">
+                        <van-cell title="默认" clickable data-name="default">
+                            <van-radio name="default" />
+                        </van-cell>
+                        <van-cell title="最近发布" clickable data-name="latest">
+                            <van-radio name="latest" />
+                        </van-cell>
+                        <van-cell title="租金从低到高" clickable data-name="price_asc">
+                            <van-radio name="price_asc" />
+                        </van-cell>
+                        <van-cell title="租金从高到低" clickable data-name="price_desc">
+                            <van-radio name="price_desc" />
+                        </van-cell>
+                        <van-cell title="面积从高到低" clickable data-name="area_desc">
+                            <van-radio name="area_desc" />
+                        </van-cell>
+                        <van-cell title="面积从低到高" clickable data-name="area_asc">
+                            <van-radio name="area_asc" />
+                        </van-cell>
+                    </van-radio-group>
+                </van-cell-group>
+            </view>
+
+            <view class="filter-buttons">
+                <van-button type="default" size="small" bindtap="onResetFilters">重置</van-button>
+                <van-button type="primary" size="small" bindtap="onApplyFilters">确定</van-button>
+            </view>
+        </view>
+    </van-popup>
+    <van-toast id="van-toast" />
+</view>

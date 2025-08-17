@@ -147,7 +147,6 @@ export const getOssSignedUrl = async (
     });
 
     console.log("尝试获得带签名的URL");
-    
 
     // 使用 signatureUrl 方法生成一个带签名的 URL
     // client.signatureUrl 会自动处理签名和过期时间
@@ -156,6 +155,8 @@ export const getOssSignedUrl = async (
     });
 
     console.log("获得带签名的URL");
+    console.log(signedUrl);
+    
     return signedUrl;
     
     
